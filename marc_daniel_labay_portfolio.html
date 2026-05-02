@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marc Daniel Labay</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1A3C5E;
+    --coral: #FF6B6B;
+    --mint: #4ECDC4;
+    --amber: #FFD93D;
+    --lavender: #C77DFF;
+    --bg: #FAFAF8;
+    --text: #1a1a1a;
+    --muted: #666;
+    --card-bg: #ffffff;
+    --border: rgba(0,0,0,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    color: var(--navy);
+    letter-spacing: -0.5px;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 500;
+    color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--navy); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 80px 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .blob1 { width: 500px; height: 500px; background: var(--mint); top: -100px; right: -100px; }
+  .blob2 { width: 350px; height: 350px; background: var(--coral); bottom: 0; left: -80px; }
+  .blob3 { width: 250px; height: 250px; background: var(--amber); top: 40%; right: 15%; }
+
+  .hero-inner {
+    max-width: 900px; margin: 0 auto; width: 100%;
+    position: relative; z-index: 1;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--navy); color: #fff;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em;
+    padding: 6px 14px; border-radius: 999px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-tag-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); }
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1; letter-spacing: -2px;
+    color: var(--navy);
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero-name span { color: var(--coral); }
+  .hero-sub {
+    font-size: 1.15rem; color: var(--muted); font-weight: 300;
+    margin-top: 1.5rem; max-width: 560px; line-height: 1.7;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-ctas {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    margin-top: 2.5rem;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--navy); color: #fff;
+    padding: 12px 28px; border-radius: 999px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,60,94,0.25); }
+  .btn-outline {
+    background: transparent; color: var(--navy);
+    padding: 12px 28px; border-radius: 999px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
+    text-decoration: none; border: 2px solid var(--navy); cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { background: var(--navy); color: #fff; }
+
+  .hero-chips {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    margin-top: 2rem;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .chip {
+    font-size: 0.78rem; font-weight: 500;
+    padding: 5px 12px; border-radius: 999px;
+    border: 1.5px solid;
+  }
+  .chip-coral { color: #c0392b; border-color: #FF6B6B; background: #fff5f5; }
+  .chip-mint  { color: #0f6e56; border-color: #4ECDC4; background: #f0fefb; }
+  .chip-amber { color: #7a5c00; border-color: #FFD93D; background: #fffdf0; }
+  .chip-lav   { color: #6b21a8; border-color: #C77DFF; background: #fdf4ff; }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 900px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--coral);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800; color: var(--navy);
+    letter-spacing: -1px; line-height: 1.1;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ABOUT */
+  #about { background: var(--navy); color: #fff; }
+  #about .section-label { color: var(--mint); }
+  #about .section-title { color: #fff; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .about-text { font-size: 1rem; line-height: 1.8; color: rgba(255,255,255,0.8); }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .stat-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px; padding: 1.25rem;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 800; color: var(--mint);
+  }
+  .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 4px; }
+
+  /* EXPERIENCE */
+  #experience { background: var(--bg); }
+  .exp-timeline { position: relative; }
+  .exp-timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 2px; background: linear-gradient(to bottom, var(--coral), var(--mint));
+  }
+  .exp-item {
+    padding-left: 2rem; margin-bottom: 2.5rem; position: relative;
+  }
+  .exp-dot {
+    position: absolute; left: -6px; top: 6px;
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 2px solid #fff;
+  }
+  .exp-dot-coral { background: var(--coral); box-shadow: 0 0 0 3px rgba(255,107,107,0.2); }
+  .exp-dot-mint  { background: var(--mint);  box-shadow: 0 0 0 3px rgba(78,205,196,0.2); }
+  .exp-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .exp-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 0.5rem; }
+  .exp-company { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--navy); }
+  .exp-date { font-size: 0.78rem; color: var(--muted); background: #f3f3f0; padding: 4px 10px; border-radius: 999px; }
+  .exp-role { font-size: 0.88rem; color: var(--coral); font-weight: 500; margin-bottom: 1rem; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .exp-bullets li { font-size: 0.88rem; color: #444; line-height: 1.6; padding-left: 1rem; position: relative; }
+  .exp-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--mint); }
+
+  /* SKILLS */
+  #skills { background: #f0fdfb; }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .skill-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.25rem;
+    transition: transform 0.2s;
+  }
+  .skill-card:hover { transform: translateY(-3px); }
+  .skill-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .skill-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); margin-bottom: 0.5rem; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-tag { font-size: 0.72rem; background: #f3f3f0; color: #555; padding: 3px 8px; border-radius: 6px; }
+
+  /* CERTIFICATIONS */
+  #certifications { background: var(--bg); }
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+  .cert-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cert-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+  .cert-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; flex-shrink: 0;
+  }
+  .cert-icon-orange { background: #fff4e0; }
+  .cert-icon-blue   { background: #e8f4ff; }
+  .cert-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); margin-bottom: 4px; }
+  .cert-issuer { font-size: 0.8rem; color: var(--muted); margin-bottom: 6px; }
+  .cert-meta { font-size: 0.75rem; color: #888; line-height: 1.5; }
+  .cert-badge {
+    display: inline-block; margin-top: 8px;
+    font-size: 0.7rem; font-weight: 600; padding: 3px 8px;
+    border-radius: 999px;
+  }
+  .badge-green { background: #e6f9f0; color: #0f6e56; }
+
+  /* REMOTE */
+  #remote { background: var(--navy); }
+  #remote .section-label { color: var(--amber); }
+  #remote .section-title { color: #fff; }
+  .remote-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .remote-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 1.25rem;
+  }
+  .remote-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 6px; }
+  .remote-val { font-size: 0.88rem; color: rgba(255,255,255,0.85); line-height: 1.5; }
+
+  /* CONTACT */
+  #contact { background: var(--bg); }
+  .contact-box {
+    background: linear-gradient(135deg, var(--navy) 0%, #0f4c81 100%);
+    border-radius: 24px; padding: 3rem 2.5rem;
+    text-align: center; color: #fff;
+    position: relative; overflow: hidden;
+  }
+  .contact-box::before {
+    content: '';
+    position: absolute; width: 300px; height: 300px;
+    background: var(--mint); border-radius: 50%;
+    top: -100px; right: -80px; opacity: 0.15;
+  }
+  .contact-box::after {
+    content: '';
+    position: absolute; width: 200px; height: 200px;
+    background: var(--coral); border-radius: 50%;
+    bottom: -60px; left: -40px; opacity: 0.15;
+  }
+  .contact-title { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: 0.75rem; position: relative; z-index: 1; }
+  .contact-sub { color: rgba(255,255,255,0.7); margin-bottom: 2rem; position: relative; z-index: 1; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; position: relative; z-index: 1; }
+  .contact-link {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.12); color: #fff;
+    padding: 10px 20px; border-radius: 999px;
+    text-decoration: none; font-size: 0.85rem; font-weight: 500;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: background 0.2s;
+  }
+  .contact-link:hover { background: rgba(255,255,255,0.22); }
+
+  /* FOOTER */
+  footer { background: var(--navy); color: rgba(255,255,255,0.4); text-align: center; padding: 1.5rem; font-size: 0.78rem; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 640px) {
+    .about-grid { grid-template-columns: 1fr; }
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+    .hero { padding: 80px 1rem 3rem; }
+    section { padding: 3rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">MDL</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob1 hero-blob"></div>
+  <div class="blob2 hero-blob"></div>
+  <div class="blob3 hero-blob"></div>
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="hero-tag-dot"></span> Open to Remote Opportunities</div>
+    <h1 class="hero-name">Marc Daniel<br><span>Labay.</span></h1>
+    <p class="hero-sub">Customer Support · Trust &amp; Safety · Dispute Resolution Specialist with 2+ years in high-volume BPO environments. Based in Alabang, Muntinlupa.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Get in Touch</a>
+      <a href="#experience" class="btn-outline">View Experience</a>
+    </div>
+    <div class="hero-chips">
+      <span class="chip chip-coral">Dispute &amp; Chargeback</span>
+      <span class="chip chip-mint">Content Moderation</span>
+      <span class="chip chip-amber">C2 English Proficient</span>
+      <span class="chip chip-lav">Subject Matter Expert</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-label">About Me</div>
+    <div class="section-title">Useful by nature,<br>accurate by habit.</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I started my career knowing one thing: I wanted to be genuinely useful to people. With 2+ years in BPO across banking dispute resolution and content moderation, I've learned that good customer support isn't just about following processes — it's about actually caring that the person on the other end gets a fair outcome.</p>
+        <br>
+        <p>I was recognized as a Subject Matter Expert at Coforge, coaching teammates, catching errors early, and helping the team handle complex cases more consistently. I graduated with high honors in STEM, and that same attention to detail carries into everything I do professionally.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-num">100+</div>
+          <div class="stat-label">Daily cases handled at Coforge</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Daily content items moderated at TaskUs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">2+</div>
+          <div class="stat-label">Years in BPO industry</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">C2</div>
+          <div class="stat-label">English proficiency (EF SET 81/100)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-label">Work Experience</div>
+    <div class="section-title">Where I've been.</div>
+    <div class="exp-timeline">
+      <div class="exp-item">
+        <div class="exp-dot exp-dot-coral"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-company">TaskUs Outsourcing</div>
+            <div class="exp-date">Oct 2025 – Apr 2026</div>
+          </div>
+          <div class="exp-role">Content Moderator — Social Media &amp; Back Office</div>
+          <ul class="exp-bullets">
+            <li>Reviewed 500+ daily user-generated content items (text, images, video) against platform policies, maintaining high accuracy and productivity scores.</li>
+            <li>Escalated sensitive and high-risk content to appropriate review tiers, ensuring regulatory compliance and platform integrity.</li>
+            <li>Applied evolving policy guidelines consistently across content types, contributing to a safer platform environment.</li>
+            <li>Met strict daily productivity targets in a fast-paced, metrics-driven environment.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-dot exp-dot-mint"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-company">Coforge BPS Philippines</div>
+            <div class="exp-date">Apr 2024 – Oct 2025</div>
+          </div>
+          <div class="exp-role">Customer Service Representative — Dispute Intake &amp; Subject Matter Expert</div>
+          <ul class="exp-bullets">
+            <li>Handled 100+ daily customer inquiries via phone and back-office channels related to transaction disputes and unauthorized charges.</li>
+            <li>Processed dispute and chargeback claims by verifying customer data and supporting documentation in compliance with banking investigation protocols.</li>
+            <li>Served as Subject Matter Expert (SME), coaching teammates and reducing team case error rates.</li>
+            <li>Coordinated with internal escalation teams to fast-track resolution of complex, high-risk transactions.</li>
+            <li>Maintained detailed, audit-ready records across CRM and case management systems.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label">Skills</div>
+    <div class="section-title">What I bring to the table.</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🎯</div>
+        <div class="skill-title">Customer Support</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Email</span><span class="skill-tag">Chat</span><span class="skill-tag">Phone</span><span class="skill-tag">SLA Compliance</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔍</div>
+        <div class="skill-title">Dispute Resolution</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Chargeback Handling</span><span class="skill-tag">Escalation Mgmt</span><span class="skill-tag">CRM Systems</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🛡️</div>
+        <div class="skill-title">Trust &amp; Safety</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Content Moderation</span><span class="skill-tag">Policy Enforcement</span><span class="skill-tag">Risk Assessment</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">⚙️</div>
+        <div class="skill-title">Tech Proficiency</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Google Workspace</span><span class="skill-tag">MS Office</span><span class="skill-tag">Canva</span><span class="skill-tag">ChatGPT</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🤝</div>
+        <div class="skill-title">Team Leadership</div>
+        <div class="skill-tags">
+          <span class="skill-tag">SME Coaching</span><span class="skill-tag">Cross-team Coordination</span><span class="skill-tag">QA</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <div class="skill-title">Data &amp; Accuracy</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Verification</span><span class="skill-tag">Documentation</span><span class="skill-tag">Audit-ready Records</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-inner">
+    <div class="section-label">Certifications</div>
+    <div class="section-title">Credentials &amp; achievements.</div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-icon cert-icon-orange">🎓</div>
+        <div>
+          <div class="cert-name">HubSpot Inbound Certification</div>
+          <div class="cert-issuer">HubSpot Academy</div>
+          <div class="cert-meta">Issued May 2026 · Expires May 2028<br>ID: 7f8c71003aad4293bf76aa7b9547700d</div>
+          <span class="cert-badge badge-green">Active</span>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon cert-icon-blue">🌐</div>
+        <div>
+          <div class="cert-name">EF SET English Certificate</div>
+          <div class="cert-issuer">EF SET</div>
+          <div class="cert-meta">81/100 · C2 Proficient<br>Issued April 2026</div>
+          <span class="cert-badge badge-green">C2 Proficient</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REMOTE READINESS -->
+<section id="remote">
+  <div class="section-inner">
+    <div class="section-label">Remote Work Readiness</div>
+    <div class="section-title">Built for remote from day one.</div>
+    <div class="remote-grid">
+      <div class="remote-card">
+        <div class="remote-label">Internet</div>
+        <div class="remote-val">PLDT Fiber 200 Mbps (primary)<br>Smart LTE 25 Mbps (backup)</div>
+      </div>
+      <div class="remote-card">
+        <div class="remote-label">Power</div>
+        <div class="remote-val">UPS with 1–2 hour backup<br>Alternate workspace nearby</div>
+      </div>
+      <div class="remote-card">
+        <div class="remote-label">Equipment</div>
+        <div class="remote-val">MacBook M2 (16GB RAM)<br>Noise-canceling headset · HD webcam</div>
+      </div>
+      <div class="remote-card">
+        <div class="remote-label">Availability</div>
+        <div class="remote-val">US EST &amp; PST timezones<br>Open to graveyard shifts</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">Contact</div>
+    <div class="section-title">Let's work together.</div>
+    <div class="contact-box">
+      <div class="contact-title">Open to new opportunities</div>
+      <p class="contact-sub">Available for customer support, trust &amp; safety, dispute resolution, and back-office roles — especially with US-based teams.</p>
+      <div class="contact-links">
+        <a href="mailto:beltesazarmarc@gmail.com" class="contact-link">✉ beltesazarmarc@gmail.com</a>
+        <a href="tel:+639209106898" class="contact-link">📞 0920-910-6898</a>
+        <a href="https://www.linkedin.com/in/marc-daniel-labay-b03765265/" target="_blank" class="contact-link">🔗 LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Marc Daniel Labay · Alabang, Muntinlupa City
+</footer>
+
+</body>
+</html>
