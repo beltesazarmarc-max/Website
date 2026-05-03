@@ -75,9 +75,22 @@
   .blob3 { width: 250px; height: 250px; background: var(--amber); top: 40%; right: 15%; }
 
   .hero-inner {
-    max-width: 900px; margin: 0 auto; width: 100%;
+    max-width: 1200px; margin: 0 auto; width: 100%;
     position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
   }
+  .hero-content {
+    max-width: 560px;
+  }
+  .hero-image {
+    display: flex; justify-content: center; align-items: center;
+  }
+  .hero-image img {
+    max-width: 100%; height: auto; border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    animation: fadeUp 0.6s 0.5s ease both;
+  }
+  
   .hero-tag {
     display: inline-flex; align-items: center; gap: 8px;
     background: var(--navy); color: #fff;
@@ -299,6 +312,11 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  @media (max-width: 768px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-image { margin-top: 2rem; }
+  }
+
   @media (max-width: 640px) {
     .about-grid { grid-template-columns: 1fr; }
     nav { padding: 0 1rem; }
@@ -327,18 +345,23 @@
   <div class="blob2 hero-blob"></div>
   <div class="blob3 hero-blob"></div>
   <div class="hero-inner">
-    <div class="hero-tag"><span class="hero-tag-dot"></span> Open to Remote Opportunities</div>
-    <h1 class="hero-name">Marc Daniel<br><span>Labay.</span></h1>
-    <p class="hero-sub">Customer Support · Trust &amp; Safety · Dispute Resolution Specialist with 2+ years in high-volume BPO environments. Based in Alabang, Muntinlupa.</p>
-    <div class="hero-ctas">
-      <a href="#contact" class="btn-primary">Get in Touch</a>
-      <a href="#experience" class="btn-outline">View Experience</a>
+    <div class="hero-content">
+      <div class="hero-tag"><span class="hero-tag-dot"></span> Open to Remote Opportunities</div>
+      <h1 class="hero-name">Marc Daniel<br><span>Labay.</span></h1>
+      <p class="hero-sub">Customer Support · Trust &amp; Safety · Dispute Resolution Specialist with 2+ years in high-volume BPO environments. Based in Alabang, Muntinlupa.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">Get in Touch</a>
+        <a href="#experience" class="btn-outline">View Experience</a>
+      </div>
+      <div class="hero-chips">
+        <span class="chip chip-coral">Dispute &amp; Chargeback</span>
+        <span class="chip chip-mint">Content Moderation</span>
+        <span class="chip chip-amber">C2 English Proficient</span>
+        <span class="chip chip-lav">Subject Matter Expert</span>
+      </div>
     </div>
-    <div class="hero-chips">
-      <span class="chip chip-coral">Dispute &amp; Chargeback</span>
-      <span class="chip chip-mint">Content Moderation</span>
-      <span class="chip chip-amber">C2 English Proficient</span>
-      <span class="chip chip-lav">Subject Matter Expert</span>
+    <div class="hero-image">
+      <img src="your-image-url-here.jpg" alt="Marc Daniel Labay">
     </div>
   </div>
 </section>
@@ -350,9 +373,9 @@
     <div class="section-title">Useful by nature,<br>accurate by habit.</div>
     <div class="about-grid">
       <div class="about-text">
-        <p>I started my career knowing one thing: I wanted to be genuinely useful to people. With 2+ years in BPO across banking dispute resolution and content moderation, I've learned that good customer support isn't just about following processes — it's about actually caring that the person on the other end gets a fair outcome.</p>
+        <p>I started my career knowing one thing: I wanted to be genuinely useful to people. With 2+ years in BPO across banking dispute resolution and content moderation, I've learned that good [...]
         <br>
-        <p>I was recognized as a Subject Matter Expert at Coforge, coaching teammates, catching errors early, and helping the team handle complex cases more consistently. I graduated with high honors in STEM, and that same attention to detail carries into everything I do professionally.</p>
+        <p>I was recognized as a Subject Matter Expert at Coforge, coaching teammates, catching errors early, and helping the team handle complex cases more consistently. I graduated with high ho[...]
       </div>
       <div class="about-stats">
         <div class="stat-card">
